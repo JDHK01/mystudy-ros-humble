@@ -20,8 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'subscriber = topic_demo.topic_publisher_node:print_helloworld',
-            'pubilsher = topic_demo.topic_subscriber_node:print_helloworld',
+            'listener = topic_demo.topic_subscriber_node:receive_helloworld',
+            'talker = topic_demo.topic_publisher_node:print_helloworld',
         ],
     },
 )

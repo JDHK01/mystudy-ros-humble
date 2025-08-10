@@ -26,6 +26,7 @@ class MinimalPublisher(Node):
         self.count += 1
 
 def print_helloworld():
+
     if not rclpy.ok():
         rclpy.init()
 
@@ -45,8 +46,10 @@ def print_helloworld():
         print(f"发生错误: {e}")
     finally:
         # 销毁节点
-        if minimal_publisher is not None:
-            minimal_publisher.destroy_node()
+        if minimal_publisherA is not None:
+            minimal_publisherA.destroy_node()
+        if minimal_publisherB is not None:
+            minimal_publisherB.destroy_node()
         # 关闭rclpy
         if rclpy.ok():
             rclpy.shutdown()

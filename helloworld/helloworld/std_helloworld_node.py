@@ -30,7 +30,8 @@ class MyNode(Node):
         # print(F'节点{self.name}已启动{self.count}秒')
         
 def print_helloworld():
-    rclpy.init()
+    if not rclpy.ok():
+        rclpy.init()
     node = None  # 初始化node变量
     executor = MultiThreadedExecutor()# 多任务执行器
 

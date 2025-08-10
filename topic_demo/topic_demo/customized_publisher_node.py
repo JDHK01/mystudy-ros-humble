@@ -27,7 +27,7 @@ class MinimalPublisher(Node):
         msg.yaw = random.uniform(5, 15)
         self.publisher.publish(msg)
         # 日志 + 迭代
-        self._logger.info(f"发布消息:{msg.data}")
+        self._logger.info(f"发布消息:{msg}")
         self.count += 1
 
 def print_position():

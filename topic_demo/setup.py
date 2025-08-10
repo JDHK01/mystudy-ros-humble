@@ -22,8 +22,8 @@ setup(
         'console_scripts': [
             'listener = topic_demo.topic_subscriber_node:receive_helloworld',
             'talker = topic_demo.topic_publisher_node:print_helloworld',
-            'customized_listener = topic_demo.customized_subscriber_node:receive_position'
-            'customized_talker = topic_demo.customized_publisher_node:print_position'
+            'customized_listener = topic_demo.customized_subscriber_node:receive_position',
+            'customized_talker = topic_demo.customized_publisher_node:print_position',
         ],
     },
 )

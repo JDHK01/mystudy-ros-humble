@@ -8,8 +8,8 @@
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
-  <depend>interface_demo</depend>
-  <depend>std_msg</depend>
+  <!-- <depend>interface_demo</depend> -->
+  <!-- <depend>std_msg</depend> -->
 
 
   <test_depend>ament_copyright</test_depend>

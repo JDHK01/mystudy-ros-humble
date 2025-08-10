@@ -2,6 +2,8 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from rclpy.executors import MultiThreadedExecutor
+from interface_demo.msg import Position
+import random
 
 class MinimalPublisher(Node):
     def __init__(self, node_name:str, topic_name:str):
@@ -11,21 +13,24 @@ class MinimalPublisher(Node):
         self.node_name = node_name
         self._logger = self.get_logger()
         # 创建发布者对象
-        self.publisher = self.create_publisher(String, topic_name, 10)
+        self.publisher = self.create_publisher(Position, topic_name, 10)
         self._logger.info(f"话题名{topic_name}, 发布者创建")
         # 创建定时器
         self.timer = self.create_timer(self.time_period, self.timer_callback)
 
     def timer_callback(self):
         '定期发布数据'
-        msg = String()
-        msg.data = self.node_name + ':' + str(self.count) + ':' + 'Helloworld'
+        msg = Position()
+        msg.x = random.randint(1, 10)
+        msg.y = random.randint(1, 10)
+        msg.z = random.randint(1, 10)
+        msg.yaw = random.uniform(5, 15)
         self.publisher.publish(msg)
         # 日志 + 迭代
         self._logger.info(f"发布消息:{msg.data}")
         self.count += 1
 
-def print_helloworld():
+def print_position():
 
     rclpy.init()
 
@@ -54,4 +59,4 @@ def print_helloworld():
             rclpy.shutdown()
 
 if __name__ == '__main__':
-    print_helloworld()
+    print_position()

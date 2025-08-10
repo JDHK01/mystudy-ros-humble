@@ -1,16 +1,19 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
+from std_msgs.msg import String
 from rclpy.executors import MultiThreadedExecutor
+from interface_demo.msg import Position
 
 
 
-class MyNode(Node):
-    def __init__(self, node_name:str):
+class CustomizedSubscriber(Node):
+    def __init__(self, node_name: str):
         super().__init__(node_name)
         self.name = node_name
         self.count = 0
         self.logger = self.get_logger()
-
 
         print(f'创建节点: {node_name}')
         print("普通日志:")
@@ -18,7 +21,6 @@ class MyNode(Node):
         print("警告日志:")
         self.get_logger().warn("Hello world!")
         print("错误日志:")
-        # self.get_logger().error("Hello world!")
         self.logger.error("Hello world")
 
         print("创建定时器")
@@ -27,16 +29,18 @@ class MyNode(Node):
     def timercallback(self):
         self.count += 1
         self.logger.info(f"节点{self.name}已启动{self.count}秒")
-        # print(F'节点{self.name}已启动{self.count}秒')
-        
-def print_helloworld():
+        # 在这里添加定时器回调逻辑
+
+
+def receive_position():
     rclpy.init()
-    node = None  # 初始化node变量
-    executor = MultiThreadedExecutor()# 多任务执行器
+    node1 = None  # 初始化node变量
+    node2 = None
+    executor = MultiThreadedExecutor()  # 多任务执行器
 
     try:
-        node1 = MyNode('str_helloworld_node')
-        node2 = MyNode('str_helloworld_node2')
+        node1 = CustomizedSubscriber('str_helloworld_node')
+        node2 = CustomizedSubscriber('str_helloworld_node2')
         executor.add_node(node1)
         executor.add_node(node2)
         executor.spin()
@@ -52,5 +56,6 @@ def print_helloworld():
         if rclpy.ok():
             rclpy.shutdown()
 
+
 if __name__ == '__main__':
-    print_helloworld()
+    receive_position()

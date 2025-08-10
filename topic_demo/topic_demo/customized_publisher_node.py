@@ -5,7 +5,7 @@ from rclpy.executors import MultiThreadedExecutor
 from interface_demo.msg import Position
 import random
 
-class MinimalPublisher(Node):
+class CustomizedPublisher(Node):
     def __init__(self, node_name:str, topic_name:str):
         super().__init__(node_name)
         self.time_period = 1.0
@@ -34,15 +34,15 @@ def print_position():
 
     rclpy.init()
 
-    minimal_publisherA = None
-    minimal_publisherB = None
+    customized_publisherA = None
+    customized_publisherB = None
     executor = MultiThreadedExecutor()# 多任务执行器
 
     try:
-        minimal_publisherA = MinimalPublisher(node_name='topic_publisher_node1', topic_name='topic')
-        minimal_publisherB = MinimalPublisher(node_name='topic_publisher_node2', topic_name='topic')
-        executor.add_node(minimal_publisherA)
-        executor.add_node(minimal_publisherB)
+        customized_publisherA = CustomizedPublisher(node_name='topic_publisher_node1', topic_name='topic')
+        customized_publisherB = CustomizedPublisher(node_name='topic_publisher_node2', topic_name='topic')
+        executor.add_node(customized_publisherA)
+        executor.add_node(customized_publisherB)
         executor.spin()
     except KeyboardInterrupt:
         print("\n程序被用户中断 (Ctrl+C)")
@@ -50,10 +50,10 @@ def print_position():
         print(f"发生错误: {e}")
     finally:
         # 销毁节点
-        if minimal_publisherA is not None:
-            minimal_publisherA.destroy_node()
-        if minimal_publisherB is not None:
-            minimal_publisherB.destroy_node()
+        if customized_publisherA is not None:
+            customized_publisherA.destroy_node()
+        if customized_publisherB is not None:
+            customized_publisherB.destroy_node()
         # 关闭rclpy
         if rclpy.ok():
             rclpy.shutdown()

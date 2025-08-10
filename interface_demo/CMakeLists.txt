@@ -9,9 +9,10 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-# 为接口生成代码
+# 为接口生成代码, 每个接口都要添加
 rosidl_generate_interfaces( ${PROJECT_NAME}
   "msg/Position.msg"
+  "srv/Distance2origin.srv"
 )
 
 if(BUILD_TESTING)

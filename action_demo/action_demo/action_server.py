@@ -23,6 +23,16 @@ class MyActionServer(Node):
         duration = goal_handle.request.duration
         self.get_logger().info(f"收到{duration}")
 
+        # 添加异常处理机制
+        if duration <= 0:
+            self.get_logger().error(f"不合法的参数")
+            goal_handle.abort()
+
+            result = Process.Result()
+            result.elapse = 0.0
+            return result
+
+
         start = time.time()
         while rclpy.ok():
             now = time.time()

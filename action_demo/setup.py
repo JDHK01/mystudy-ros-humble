@@ -18,7 +18,7 @@ setup(
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
-    entry_points={
+    entry_points={ 
         'console_scripts': [
             "server = action_demo.action_server:main",
             "client = action_demo.action_client:main",

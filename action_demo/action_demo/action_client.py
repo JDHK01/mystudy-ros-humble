@@ -51,8 +51,8 @@ class MyActionClient(Node):
         # 发送
         # 第一个future, 是否被接受
         self.future = self.action_client.send_goal_async(goal, self.fb_callback)
-        self.future.add_done_callback(self.goal_response_callback)
-
+        # self.future.add_done_callback(self.goal_response_callback)
+        
     def fb_callback(self, fb_msg):
         feedback = fb_msg.feedback
         self.get_logger().info(f"连续反馈信息:{feedback.process}")    
